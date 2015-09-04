@@ -3,13 +3,13 @@ var bio = {
 	"name" : "Monica Silva",
 	"role" : "Web Developer",
 	"contacts" : {
-		"mobile": "6192147655",
+		"mobile": "619-214-7655",
 		"email" : "silva.castro.mony@gmail.com",
 		"github": "monsyc91",
-		"location": "San Diego",
+		"location": "San Diego, CA",
 	},
-	"welcomeMessage" : "Bienvenidos",
-	"skills": ["responsible", "designer", "happy", "social"],
+	"welcomeMessage" : "Welcome! Bienvenido! In just one paper you are going to know what I am, what I do, and what I've been doing.",
+	"skills": ["Creative", "Ability to work under pressure", "Responsible", "Good solving problems"],
 	"bioPic": "images/fry.jpg",
 
 }
@@ -20,13 +20,17 @@ var	education = {
 			"name": "Tecnologico de Monterrey",
 			"city": "Monterrey",
 			"degree": "BA",
-			"major": ["Industrial Design"]
+			"dates": "2009 - 2014 ",
+			"major": ["Industrial Design"],
+			"location": "Monterrey, NL"
 		},
 		{
 			"name": "The Art Institute",
 			"city": "San Diego",
 			"degree": "Diploma",
-			"major": ["Web Design and Interactive Communications"]
+			"dates": "2015 - 2016 ",
+			"major": ["Web Design and Interactive Communications"],
+			"location": "San Diego, CA"
 		}
 	],
 	"onlineCourses": [
@@ -45,13 +49,15 @@ var work = {
 			"employer": "GeneraStudio",
 			"title": "Rendering and 3d modeler",
 			"dates": "April-December 2013",
-			"description": "skjdfnksdnfksndfksndf"	
+			"description": "skjdfnksdnfksndfksndf",
+			"location": "Monterey, MEX"
 		},
 		{
 			"employer": "Local 10 arquitectura",
 			"title": "Industrial Designer",
 			"dates": "July 2014-June 2015",
-			"description": "skjdfnksdnfksndfksndf"	
+			"description": "skjdfnksdnfksndfksndf",
+			"location": "Monterey, MEX"
 		}
 	]
 }
@@ -59,9 +65,9 @@ var work = {
 var projects = {
 	"projects": [
 		{
-			"title": "whirlpool",
-			"dates": "2014",
-			"description": "lskjflsdjfglkjdsflg",
+			"title": "Showroom Porcelanite, Guadalajara, MEX",
+			"dates": "2015",
+			"description": "Porclanite tiles, wanted to change the design of all the showrooms they have in Mexico, I was in charge of the design process, the final concept consists in give a fresh and modern look.",
 			"images": [
 				"images/manzana.jpg",
 				"images/manzana.jpg"
@@ -71,27 +77,21 @@ var projects = {
 }
 
 
-
 var formattedbioName = HTMLheaderName.replace("%data%", bio.name);
-$("#header").append(formattedbioName);
-
 var formattedbioRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").append(formattedbioRole);
-
-
-
+$("#header").prepend(formattedbioName + formattedbioRole);
 
 var formattedbioMobile= HTMLmobile.replace("%data%",bio.contacts.mobile);
-$("#header").append(formattedbioMobile);
+$("#topContacts").append(formattedbioMobile);
 
 var formattedbioEmail= HTMLemail.replace("%data%",bio.contacts.email);
-$("#header").append(formattedbioEmail);
+$("#topContacts").append(formattedbioEmail);
 
 var formattedbioGithub= HTMLgithub.replace("%data%",bio.contacts.github);
-$("#header").append(formattedbioGithub);
+$("#topContacts").append(formattedbioGithub);
 
 var formattedbioLocation= HTMLlocation.replace("%data%",bio.contacts.location);
-$("#header").append(formattedbioLocation);
+$("#topContacts").append(formattedbioLocation);
 
 var formattedbioWelcomeMessage= HTMLWelcomeMsg.replace("%data%",bio.welcomeMessage);
 $("#header").append(formattedbioWelcomeMessage);
@@ -114,15 +114,15 @@ if ((bio.skills).length > 0) {
 
 
 education.display = function() {
-    for (i in education.schools){
+    for (i in education.schools ){
   		$("#education").append(HTMLschoolStart);
 
     var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
     var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
     var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
     var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].city);
-    var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].degree);
-    
+    var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
+
     $(".education-entry:last").append(formattedSchoolName);
     $(".education-entry:last").append(formattedSchoolDegree);
     $(".education-entry:last").append(formattedSchoolDates);
@@ -132,14 +132,35 @@ education.display = function() {
   }
 }
 
-
-
 education.display();
 
+
+
+	var formattedOCourses = HTMLonlineClasses.replace("%data%", education.onlineCourses);
+	$("#education"). append (formattedOCourses);
+
+  education.display = function() {
+    for (i in education.onlineCourses ){
+  		$("#education").append(HTMLschoolStart);	
+
+    var formattedOCTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
+    var formattedOCSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
+    var formattedOCDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].dates);
+    var formattedOCUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[i].url);
+ 	$(".education-entry:last").append(formattedOCTitle);
+    $(".education-entry:last").append(formattedOCSchool);
+    $(".education-entry:last").append(formattedOCDates);
+    $(".education-entry:last").append(formattedOCUrl);
+
+    }
+}
+
+education.display();
+    
 function displayWork() {
 	for (job in work.jobs) {
 	  $("#workExperience").append(HTMLworkStart);
-	  var formattedEmployer = HTMLworkEmployer.replace("%data", work.jobs[job].employer);
+	  var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
 	  var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
 	  var formattedEmployerTitle = formattedEmployer + formattedTitle;
 	  $(".work-entry:last").append(formattedEmployerTitle);
@@ -149,7 +170,9 @@ function displayWork() {
 
 	  var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
 	  $(".work-entry:last").append(formattedDescription);
-
+	  
+	  var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	  $(".work-entry:last").prepend(formattedLocation);
 	}
 }
 displayWork();
@@ -187,6 +210,18 @@ projects.display = function () {
 });
 
  $("#mapDiv").append(googleMap);
+
+var formattedbioMobile= HTMLmobile.replace("%data%",bio.contacts.mobile);
+$("#footerContacts").append(formattedbioMobile);
+
+var formattedbioEmail= HTMLemail.replace("%data%",bio.contacts.email);
+$("#footerContacts").append(formattedbioEmail);
+
+var formattedbioGithub= HTMLgithub.replace("%data%",bio.contacts.github);
+$("#footerContacts").append(formattedbioGithub);
+
+var formattedbioLocation= HTMLlocation.replace("%data%",bio.contacts.location);
+$("#footerContacts").append(formattedbioLocation);
 
 
 // https://www.udacity.com/course/intro-to-jquery--ud245
